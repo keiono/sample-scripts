@@ -5,9 +5,7 @@ var http = require('http');
 var async = require('async');
 var request = require('request');
 var inspect = require('util').inspect;
-var $ = require('jquery');
 var csv = require('ya-csv');
-
 
 // Cytoscape REST
 var BASE_URL = 'http://localhost:9988/';
@@ -16,13 +14,10 @@ var writer = csv.createCsvFileWriter(REPORT_FILE_NAME);
 
 var parameters = {
     parentSUID: process.argv[2]
-}
+};
 
 var tasks = [];
-
 var counter = 0;
-var columnNmaes = ['trial'];
-
 
 // Filal report will be stored here.
 var resultArray = [];
@@ -114,23 +109,17 @@ var workflow = [
     }
 ];
 
-
 /**
  * Generate an CSV report file for the given network data.
  *
  * @param network
  */
 function generateReport(network) {
-    var nodes = network.nodes;
-    var clusters = [];
-    for (var key in nodes) {
-
-    }
 }
 
 
 // Add tasks to the array.
-for (var i = 0; i < 100; i++) {
+for (var i = 0; i < 10; i++) {
     for (var j = 0; j < workflow.length; j++) {
         tasks.push(workflow[j]);
     }
@@ -176,8 +165,9 @@ function done(err) {
 
         writer.writeRecord(line);
     }
-    console.log('finished!!!! ' + columnNmaes);
+    console.log('finished!!!! ' );
 }
 
+// Execute tasks
 async.waterfall(tasks, done);
 
